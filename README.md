@@ -15,7 +15,5 @@ python3 random_movie.py
 
 ### To-do list
 
-* If chosen file is a directory, search for the actual video file in that directory
-* show movie duration
-* find movie info on IMDB (duration, score, metascore)
+* find movie info on IMDB (score, metascore)
 * show output on dialogue window and not on console
