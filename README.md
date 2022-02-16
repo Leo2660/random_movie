@@ -1,6 +1,6 @@
 # random_movie
 
-Select a random movie from a directory chosen by the user
+Select a random movie from a directory chosen by the user. Easy and not made well but works for me.
 
 ## Installation 
 
@@ -17,5 +17,5 @@ python3 random_movie.py
 
 * If chosen file is a directory, search for the actual video file in that directory
 * show movie duration
-* find movie info on imdv (duration, score, metascore)
+* find movie info on IMDB (duration, score, metascore)
 * show output on dialogue window and not on console
