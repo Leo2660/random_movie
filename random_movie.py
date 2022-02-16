@@ -3,6 +3,7 @@ import os, random
 import time
 from os import system, name
 from moviepy.editor import VideoFileClip
+import glob
 
 #clear console function
 def clear():
@@ -24,10 +25,13 @@ print("Selezionare la cartella che contiene i film")
 time.sleep(2)
 directory_path = filedialog.askdirectory() #returns opened path as str
 
-movie = random.choice(os.listdir(directory_path))
-#complete_path = directory_path + '/' + movie
-#duration = VideoFileClip(complete_path).duration
-print("Il tuo film per stasera è: " + movie)
-#print("Durata: " + time.strftime('%H:%M:%S', time.gmtime(duration)) )
 
-#quelli commentati sono per la durata, li farò poi
+movies_mp4 = glob.glob(directory_path + "/**/*.mp4", recursive = True) #trova tutti gli mp4
+movies_mkv = glob.glob(directory_path + "/**/*.mkv", recursive = True) #trova tutti gli mkv
+movies = movies_mp4 + movies_mkv
+random_movie_path = random.choice(movies)
+movie_name = os.path.basename(os.path.normpath(random_movie_path)) #tiene solo la parte finale del path
+duration = VideoFileClip(random_movie_path).duration #ottiene la durata del film
+print("Il tuo film per stasera è: " + movie_name)
+print("Durata: " + time.strftime('%H:%M:%S', time.gmtime(duration)) )
+
