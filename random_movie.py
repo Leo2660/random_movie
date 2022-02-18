@@ -4,6 +4,7 @@ import time
 from os import system, name
 from moviepy.editor import VideoFileClip
 import glob
+import PTN
 
 #clear console function
 def clear():
@@ -31,7 +32,8 @@ movies_mkv = glob.glob(directory_path + "/**/*.mkv", recursive = True) #trova tu
 movies = movies_mp4 + movies_mkv
 random_movie_path = random.choice(movies)
 movie_name = os.path.basename(os.path.normpath(random_movie_path)) #tiene solo la parte finale del path
+movie_parsed = PTN.parse(movie_name)
 duration = VideoFileClip(random_movie_path).duration #ottiene la durata del film
-print("Il tuo film per stasera è: " + movie_name)
+print("Il tuo film per stasera è: " + movie_parsed['title'])
 print("Durata: " + time.strftime('%H:%M:%S', time.gmtime(duration)) )
 
