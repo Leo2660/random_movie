@@ -38,15 +38,18 @@ movie_name = os.path.basename(os.path.normpath(random_movie_path)) #tiene solo l
 movie_parsed = PTN.parse(movie_name) #returns dict
 duration = VideoFileClip(random_movie_path).duration #ottiene la durata del film
 
-search = ia.search_movie(movie_parsed['title']) #uses title field from parsed movie name
-movie_id = search[0].movieID #gets movie id
-movie_from_id = ia.get_movie(movie_id) #gets movie data using the movie id
-user_rating = movie_from_id.data['rating']
-critics_data = ia.get_movie_critic_reviews(movie_id) #gets critics data, returned value is a dict
-metascore = critics_data['data']['metascore']
-
 print("Il tuo film per stasera è: " + movie_parsed['title'])
 print("Durata: " + time.strftime('%H:%M:%S', time.gmtime(duration)) )
-print("User rating: " + str(user_rating))
-print("Metascore: " + str(metascore))
+
+try:
+    search = ia.search_movie(movie_parsed['title']) #uses title field from parsed movie name
+    movie_id = search[0].movieID #gets movie id
+    movie_from_id = ia.get_movie(movie_id) #gets movie data using the movie id
+    user_rating = movie_from_id.data['rating']
+    critics_data = ia.get_movie_critic_reviews(movie_id) #gets critics data, returned value is a dict
+    metascore = critics_data['data']['metascore']
+    print("User rating: " + str(user_rating))
+    print("Metascore: " + str(metascore))
+except:
+    print("Errore nella ricerca dei dati su IMDb")
 
