@@ -26,5 +26,4 @@ python3 random_movie.py
 
 ## To-do list
 
-* find movie info on IMDB (score, metascore)
 * show output on dialogue window and not on console
