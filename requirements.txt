@@ -6,7 +6,7 @@ idna==3.3
 imageio==2.16.0
 imageio-ffmpeg==0.4.5
 IMDbPY==2021.4.18
-lxml==4.8.0
+lxml==4.9.1
 moviepy==1.0.3
 numpy==1.22.2
 parse-torrent-name==1.1.1
