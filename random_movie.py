@@ -30,6 +30,10 @@ def getFolderPath():
 
 def setMovie():
     movieList = fileList = glob.glob(folderPath.get() + "/**/*." + "mp4", recursive = True) + glob.glob(folderPath.get() + "/**/*." + "mkv", recursive = True)
+    if (len(movieList) == 0):
+        movieTitle.set("Nessun Film Trovato")
+        time.sleep(5)
+        exit()
     moviePath = random.choice(movieList)
     movieName = os.path.basename(os.path.normpath(moviePath))
     movieParsed = PTN.parse(movieName) #returns dict
