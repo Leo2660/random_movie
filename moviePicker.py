@@ -11,7 +11,7 @@ class Gui(tk.Tk):
         super().__init__()
         
         #basic setup
-        self.geometry("900x400")
+        self.geometry("700x400")
         self.title("Random movie picker")
         self.rowconfigure(9)
         self.columnconfigure(4)
@@ -22,13 +22,14 @@ class Gui(tk.Tk):
         self.movieDuration = tk.StringVar()
         self.imdbUserRating = tk.StringVar()
         self.imdbMetascore = tk.StringVar()
+        self.movieList = []
 
         #directory label
         self.directoryLabel = tk.Label(self ,text="Movies folder path")
         self.directoryLabel.grid(row=0,column = 0)
 
         #choose directory button
-        self.btnFind = tk.Button(self, text="Browse Folders",command=self.getFolderPath)
+        self.btnFind = tk.Button(self, text="Browse Folders",command=self.setDirectory)
         self.btnFind.grid(row=0,column=2)
 
         #directory entry
@@ -72,12 +73,8 @@ class Gui(tk.Tk):
         self.imdbMetascoreEntry.grid(row=5, column=1)
 
 
-    def setMovie(self):
-        movieList = []
-        for ext in extensions():
-                movieList = movieList + glob.glob(self.folderPath.get() + "/**/*." + ext, recursive = True)
-            
-        moviePath = random.choice(movieList)
+    def setMovie(self):     
+        moviePath = random.choice(self.movieList)
         movie = Movie(moviePath)
         self.movieTitle.set(movie.getParsedName())
         self.movieDuration.set(movie.getDuration()) 
@@ -86,9 +83,12 @@ class Gui(tk.Tk):
 
 
 
-    def getFolderPath(self):
+    def setDirectory(self):
         folder_selected = filedialog.askdirectory()
         self.folderPath.set(folder_selected)
+        self.movieList = []
+        for ext in extensions():
+                self.movieList = self.movieList + glob.glob(self.folderPath.get() + "/**/*." + ext, recursive = True)
 
 
 if __name__ == "__main__":
