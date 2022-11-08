@@ -11,7 +11,7 @@ cd random_movie
 python3 -m venv env
 source env/bin/activate
 pip install -r requirements.txt
-python3 random_movie.py
+python3 moviePicker.py
 ```
 
 ### Basic install
@@ -19,7 +19,7 @@ python3 random_movie.py
 git clone https://github.com/Leo2660/random_movie
 cd random_movie
 pip install -r requirements.txt
-python3 random_movie.py
+python3 moviePicker.py
 ```
 
 
