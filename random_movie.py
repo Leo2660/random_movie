@@ -29,7 +29,7 @@ def getFolderPath():
     folderPath.set(folder_selected)
 
 def setMovie():
-    movieList = fileList = glob.glob(folderPath.get() + "/**/*." + "mp4", recursive = True) + glob.glob(folderPath.get() + "/**/*." + "mkv", recursive = True)
+    movieList = glob.glob(folderPath.get() + "/**/*." + "mp4", recursive = True) + glob.glob(folderPath.get() + "/**/*." + "mkv", recursive = True)
     if (len(movieList) == 0):
         movieTitle.set("Nessun Film Trovato")
         time.sleep(5)
