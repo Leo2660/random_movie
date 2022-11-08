@@ -55,4 +55,7 @@ class Movie:
         return self.imdbMetascore
         
 
-     
+
+def extensions():
+    extensions = ["mp4", "mkv", "avi", "wmv", "flv", "webm"]
+    return extensions

@@ -73,14 +73,10 @@ class Gui(tk.Tk):
 
 
     def setMovie(self):
-        movieList = glob.glob(self.folderPath.get() + "/**/*." + "mp4", recursive = True) + glob.glob(self.folderPath.get() + "/**/*." + "mkv", recursive = True)
-        
-        if (len(movieList) == 0):
-            self.movieTitle.set("No movie files found in this folder")
-            time.sleep(5)
-            exit()
+        movieList = []
+        for ext in extensions():
+                movieList = movieList + glob.glob(self.folderPath.get() + "/**/*." + ext, recursive = True)
             
-
         moviePath = random.choice(movieList)
         movie = Movie(moviePath)
         self.movieTitle.set(movie.getParsedName())

@@ -30,3 +30,4 @@ python3 moviePicker.py
 * Add license
 * create setup file
 * create better README
+* add icon and make UI prettier
