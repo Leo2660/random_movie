@@ -26,4 +26,7 @@ python3 moviePicker.py
 
 ## To-do list
 
-* show output on dialogue window and not on console
+* Separate GUI from main
+* Add license
+* create setup file
+* create better README
