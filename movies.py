@@ -56,6 +56,11 @@ class Movie:
         
 
 
+def extensionsDotted():
+    extensions = [".mp4", ".mkv", ".avi", ".wmv", ".flv", ".webm"]
+    return extensions
+
 def extensions():
     extensions = ["mp4", "mkv", "avi", "wmv", "flv", "webm"]
     return extensions
+    
