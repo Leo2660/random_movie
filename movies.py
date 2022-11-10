@@ -17,7 +17,7 @@ class Movie:
     #Every attribute can be accessed with a method 
 
     def __init__(self, path):
-        self.path = path
+        self.path = str(path)
         self.fileName = os.path.basename(os.path.normpath(self.path))
         parsedFIle = PTN.parse(self.fileName)
         self.parsedName= parsedFIle['title']

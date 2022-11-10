@@ -4,6 +4,8 @@ from tkinter import filedialog
 import glob
 import random
 import time
+import os
+import re
 
 class Gui(tk.Tk):
     
@@ -16,6 +18,7 @@ class Gui(tk.Tk):
         self.rowconfigure(9)
         self.columnconfigure(4)
         self.resizable(True, True)
+        self.eval('tk::PlaceWindow . center')
 
         self.folderPath = tk.StringVar()
         self.movieTitle = tk.StringVar()
@@ -72,6 +75,10 @@ class Gui(tk.Tk):
         self.imdbMetascoreEntry = tk.Entry(self, width=50, textvariable=self.imdbMetascore)
         self.imdbMetascoreEntry.grid(row=5, column=1)
 
+        #close button
+        self.closeButton = tk.Button(self, text="Close", command=lambda:exit())
+        self.closeButton.grid(row=7, column=1)
+
 
     def setMovie(self):     
         moviePath = random.choice(self.movieList)
@@ -87,8 +94,11 @@ class Gui(tk.Tk):
         folder_selected = filedialog.askdirectory()
         self.folderPath.set(folder_selected)
         self.movieList = []
-        for ext in extensions():
-                self.movieList = self.movieList + glob.glob(self.folderPath.get() + "/**/*." + ext, recursive = True)
+        for dirpath, dirnames, filenames in os.walk(folder_selected):
+            for f in filenames:
+                if os.path.splitext(f)[1] in extensionsDotted() and not f.startswith("._"):
+                    self.movieList.append(os.path.join(dirpath, f))
+
 
 
 if __name__ == "__main__":
