@@ -6,7 +6,7 @@ Select a random movie from a directory chosen by the user. Easy and not made wel
 
 ### Optional: Create virtual environment before installing dependencies
 ```bash 
-git clone https://github.com/Leo2660/random_movie
+git clone https://github.com/leonardosolari/random_movie
 cd random_movie
 python3 -m venv env
 source env/bin/activate
@@ -16,7 +16,7 @@ python3 moviePicker.py
 
 ### Basic install
 ```bash 
-git clone https://github.com/Leo2660/random_movie
+git clone https://github.com/leonardosolari/random_movie
 cd random_movie
 pip install -r requirements.txt
 python3 moviePicker.py
