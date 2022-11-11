@@ -25,7 +25,6 @@ python3 moviePicker.py
 ## To-do list
 
 * Separate GUI from main
-* Add license
 * create setup file
 * create better README
 * add icon and make UI prettier
