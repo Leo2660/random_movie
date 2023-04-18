@@ -20,6 +20,8 @@ import PTN
 from imdb import IMDb
 from moviepy.editor import VideoFileClip
 import time
+import cv2
+import datetime
 
 class Movie:
 
@@ -81,3 +83,5 @@ def extensions():
     extensions = ["mp4", "mkv", "avi", "wmv", "flv", "webm"]
     return extensions
     
+def durationFromPath(path):
+    return VideoFileClip(path).duration

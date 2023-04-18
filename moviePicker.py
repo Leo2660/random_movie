@@ -23,6 +23,7 @@ import random
 import time
 import os
 import re
+import cv2
 
 class Gui(tk.Tk):
     
@@ -57,8 +58,12 @@ class Gui(tk.Tk):
         self.directoryEntry.grid(row=0,column=1)
 
         #pick movie button
-        self.pickMovieButton = tk.Button(self ,text="Pick random movie", command=self.setMovie)
+        self.pickMovieButton = tk.Button(self ,text="Pick random movie", command=self.getRandomMovie)
         self.pickMovieButton.grid(row=1,column=1)
+
+        #get shortest button
+        self.pickShortest = tk.Button(self ,text="Get shortest movie", command=self.getShortestMovie)
+        self.pickShortest.grid(row=8,column=0)
 
         #title label
         self.titleLabel = tk.Label(self, text="Title")
@@ -97,14 +102,12 @@ class Gui(tk.Tk):
         self.closeButton.grid(row=7, column=1)
 
 
-    def setMovie(self):     
-        moviePath = random.choice(self.movieList)
-        movie = Movie(moviePath)
+    
+    def setMovie(self, movie):     
         self.movieTitle.set(movie.getParsedName())
         self.movieDuration.set(movie.getDuration()) 
         self.imdbUserRating.set(movie.getUserscore())
         self.imdbMetascore.set(movie.getMetascore())
-
 
 
     def setDirectory(self):
@@ -115,6 +118,27 @@ class Gui(tk.Tk):
             for f in filenames:
                 if os.path.splitext(f)[1] in extensionsDotted() and not f.startswith("._"):
                     self.movieList.append(os.path.join(dirpath, f))
+
+    def getRandomMovie(self):
+        moviePath = random.choice(self.movieList)
+        movie = Movie(moviePath)
+        self.setMovie(movie)
+
+
+
+    def getShortestMovie(self):
+        min = 999999999
+        for element in self.movieList:
+            duration = durationFromPath(element)
+            if duration < min:
+                shortest = element
+                min = duration
+        movie = Movie(shortest)
+        self.setMovie(movie)
+
+
+
+
 
 
 
